@@ -1,0 +1,76 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection ConfigurationAvoidance
+//file:noinspection GrUnresolvedAccess
+
+buildscript {
+    def setupRepositories = {
+        it.repositories {
+            maven {
+                url 'https://maven.aliyun.com/repository/public'
+            }
+            mavenCentral()
+            maven {
+                url 'https://mirrors.honoka.de/maven-repo'
+            }
+        }
+    }
+    setupRepositories(delegate)
+    ext {
+        def d = delegate
+        d.setupRepositories = setupRepositories
+    }
+    ext {
+        kotlinVersion = '1.6.21'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version "$kotlinVersion"
+    id 'org.jetbrains.kotlin.plugin.spring' version "$kotlinVersion"
+}
+
+group = 'de.honoka.server'
+version = '1.0.0'
+sourceCompatibility = '17'
+
+setupRepositories(this)
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    implementation 'de.honoka.sdk:honoka-utils:1.0.8'
+    implementation 'de.honoka.sdk:honoka-framework-utils:1.0.2'
+    implementation 'cn.hutool:hutool-all:5.8.18'
+    implementation 'de.marhali:json5-java:2.0.0'
+    String lombok = 'org.projectlombok:lombok:1.18.26'
+    compileOnly lombok
+    annotationProcessor lombok
+    testCompileOnly lombok
+    testAnnotationProcessor lombok
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = sourceCompatibility
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = sourceCompatibility
+}
+
+bootJar {
+    version ''
+}

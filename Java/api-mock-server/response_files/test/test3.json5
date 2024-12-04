@@ -1,0 +1,28 @@
+{
+//  active: 0,
+  responses: [
+    {
+      matches: {
+        param: 'a',
+        param2: 1
+      },
+      body: {
+        value: 'a'
+      }
+    },
+    {
+      matches: {
+        param: 'b',
+        param2: 2
+      },
+      body: {
+        value: 'b'
+      }
+    },
+    {
+      body: {
+        value: 'c'
+      }
+    }
+  ]
+}

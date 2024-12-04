@@ -1,0 +1,20 @@
+###
+GET {{base_url}}/test/test1
+
+###
+GET {{base_url}}/test/test2
+
+###
+GET {{base_url}}/test/test3?param=a&param2=1
+
+###
+POST {{base_url}}/test/test3
+Content-Type: application/json
+
+{
+  "param": "b",
+  "param2": 2
+}
+
+###
+GET {{base_url}}/test/test3

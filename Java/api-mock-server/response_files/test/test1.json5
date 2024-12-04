@@ -1,0 +1,31 @@
+{
+  active: 0,
+  responses: [
+    {
+      http_status: 200,
+      headers: {
+        'Test-Header': 'test'
+      },
+      body: {
+        code: 0,
+        msg: 'test-0',
+        data: {
+          test: 0,
+          test2: 1
+        }
+      }
+    },
+    {
+      body: {
+        code: 0,
+        msg: 'test-1',
+        data: {
+          test: 1
+        }
+      }
+    },
+    {
+      body: [ 1, 2, 3 ]
+    }
+  ]
+}

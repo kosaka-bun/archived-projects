@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+app:
+  response-file-base: ./response_files
